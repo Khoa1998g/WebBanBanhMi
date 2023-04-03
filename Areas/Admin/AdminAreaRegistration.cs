@@ -17,7 +17,7 @@ namespace WebBanBanhMi.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { Controller = "Book", action = "Index", id = UrlParameter.Optional },
+                new { Controller = "BanhMi", action = "Index", id = UrlParameter.Optional },
                 new[] { "WebBanBanhMi.Areas.Admin.Controllers" }
             );
         }
