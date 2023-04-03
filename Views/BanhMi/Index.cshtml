@@ -1,0 +1,46 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<WebBanBanhMi.Models.BanhMi>
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("Search", "BanhMi", FormMethod.Get))
+{
+    <input type="text" name="searchString" placeholder="Tìm kiếm" />
+    <input type="submit" value="Search" />
+}
+
+<br />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <p><strong></strong>@item.Name</p>
+
+                    <img style="align-self:center;" alt="@item.Name"
+                         src="~/Content/Image/@item.Image" width="200" height="150" />
+                    <br />
+                    <p><strong></strong>@item.Category.CategoryName</p>
+                </div>
+                <div class="panel-footer clearfix">
+                    <div class="pull-right">
+                        @Html.ActionLink("Xem", "Details", "BanhMi", new { id = item.Id }, new
+                        {
+                            @class
+                        = "btn btn-default"
+                        })
+                        @Html.ActionLink("Thêm vào giỏ hàng", "AddToCart", "ShoppingCart", new
+                        {
+                            id = item.Id
+                        }, new { @class = "btn btn-success" })
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

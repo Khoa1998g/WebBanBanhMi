@@ -1,0 +1,8 @@
+﻿@model IEnumerable<WebBanBanhMi.Models.Category>
+<h2>Loại Bánh Mì</h2>
+<ul style="margin-right">
+    @foreach (var item in Model)
+    {
+        <li>@Html.ActionLink(item.CategoryName, "GetBanhMiByCategory/" + item.CategoryId, "BanhMi") </li>
+    }
+</ul>
